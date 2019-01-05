@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
 
+  before_action :tweet_set, only: [:destroy, :edit, :update]
+
   def index
     @tweets = Tweet.all.order("id DESC")
   end
@@ -9,31 +11,32 @@ class TweetsController < ApplicationController
   end
 
   def create
-    Tweet.create(text: tweet_params[:text], user_id: current_user.id)
+    Tweet.create(tweet_params)
     redirect_to action: "index"
   end
 
   def destroy
-    tweet = Tweet.find(params[:id])
-    tweet.destroy if tweet.user_id == current_user.id
+    @tweet.destroy if @tweet.user_id == current_user.id
     redirect_to action: "index"
   end
 
   def edit
-    @tweets = Tweet.find(params[:id])
   end
 
   def update
-    tweet = Tweet.find(params[:id])
-    if tweet.user_id == current_user.id
-    tweet.update(tweet_params)
+    if @tweet.user_id == current_user.id
+    @tweet.update(tweet_params)
     redirect_to action: "index"
     end
   end
 
   private
   def tweet_params
-    params.require(:tweet).permit(:text)
+    params.require(:tweet).permit(:text).merge(user_id: current_user.id)
+  end
+
+  def tweet_set
+    @tweet = Tweet.find(params[:id])
   end
 
 end
