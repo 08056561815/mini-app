@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+.nav-wrapper {
+  background-color: #008b8b;
+}
+
+.row{
+  width: 95%;
+  padding: 40px 0 0 0;
+}
+
+.col{
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.card-action {
+  background-color: #008b8b;
+}
+
+.btn.btn-primary.withripple {
+  margin: 0 0 0 80px;
+  background-color: #008b8b;
+}
+
+
