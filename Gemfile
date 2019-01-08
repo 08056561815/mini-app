@@ -56,3 +56,5 @@ gem "devise"
 gem 'pry-rails'
 gem 'pry-byebug'
 gem 'pry-doc'
+gem 'bootstrap-sass'
+gem 'data-confirm-modal'
